@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.example.audiobook" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>听书</name>
+    <description>
+        一款支持导入小说、自动朗读、定时关闭、续放的听书应用。
+    </description>
+    <author email="dev@example.com" href="https://example.com">
+        听书
+    </author>
+    <content src="index.html" />
+
+    <!-- 通用权限与配置 -->
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+
+    <!-- 应用配置 -->
+    <preference name="Orientation" value="portrait" />
+    <preference name="Fullscreen" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="StatusBarBackgroundColor" value="#16213e" />
+    <preference name="StatusBarStyle" value="lightcontent" />
+
+    <!-- WebView 配置：允许文件访问、提升渲染 -->
+    <preference name="AndroidInsecureFileModeEnabled" value="true" />
+    <preference name="android-minSdkVersion" value="24" />
+    <preference name="android-targetSdkVersion" value="36" />
+    <preference name="android-compileSdkVersion" value="36" />
+
+    <platform name="android">
+        <allow-intent href="market:*" />
+        <!-- 保持屏幕常亮 -->
+        <edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:keepScreenOn="true" />
+        </edit-config>
+    </platform>
+</widget>

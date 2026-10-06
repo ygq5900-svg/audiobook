@@ -1,0 +1,6 @@
+# Cordova / Android
+/platforms/
+/plugins/
+/node_modules/
+*.log
+.DS_Store

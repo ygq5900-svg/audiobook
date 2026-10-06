@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>听书</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!-- 书架视图 -->
+    <div id="shelf-view" class="view active">
+        <header class="app-header">
+            <h1>📚 我的书架</h1>
+            <button id="import-btn" class="btn-primary">+ 导入小说</button>
+        </header>
+        <input type="file" id="file-input" accept=".txt,text/plain" multiple hidden>
+        <div id="book-list" class="book-list">
+            <div class="empty-state">
+                <div class="empty-icon">📖</div>
+                <p>书架空空如也</p>
+                <p class="hint">点击右上角「导入小说」添加 TXT 文件</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 阅读/听书视图 -->
+    <div id="reader-view" class="view">
+        <header class="reader-header">
+            <button id="back-btn" class="icon-btn">← 返回</button>
+            <h2 id="reader-title">书名</h2>
+            <button id="more-btn" class="icon-btn">⋯</button>
+        </header>
+
+        <div class="reader-content">
+            <div id="text-display" class="text-display"></div>
+        </div>
+
+        <!-- 底部播放控制 -->
+        <div class="player-bar">
+            <div class="progress-row">
+                <span id="progress-text">0 / 0</span>
+                <div class="progress-track">
+                    <div id="progress-bar" class="progress-fill"></div>
+                </div>
+                <span id="timer-display">∞</span>
+            </div>
+
+            <div class="controls-row">
+                <button id="prev-chapter-btn" class="ctrl-btn" title="上一段">⏮</button>
+                <button id="play-pause-btn" class="ctrl-btn main" title="播放/暂停">▶</button>
+                <button id="next-chapter-btn" class="ctrl-btn" title="下一段">⏭</button>
+            </div>
+
+            <div class="settings-row">
+                <div class="setting-group">
+                    <label>语速</label>
+                    <input type="range" id="rate-slider" min="0.5" max="2" step="0.1" value="1">
+                    <span id="rate-value">1.0</span>
+                </div>
+                <div class="setting-group">
+                    <label>音色</label>
+                    <select id="voice-select"></select>
+                </div>
+                <button id="timer-btn" class="setting-btn" title="定时关闭">⏱ 定时</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 定时关闭弹窗 -->
+    <div id="timer-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>定时关闭</h3>
+            <div class="timer-options">
+                <button class="timer-opt" data-min="0">不开启</button>
+                <button class="timer-opt" data-min="10">10 分钟</button>
+                <button class="timer-opt" data-min="15">15 分钟</button>
+                <button class="timer-opt" data-min="30">30 分钟</button>
+                <button class="timer-opt" data-min="45">45 分钟</button>
+                <button class="timer-opt" data-min="60">60 分钟</button>
+                <button class="timer-opt" data-min="90">90 分钟</button>
+                <button class="timer-opt" data-min="end">播完本章</button>
+            </div>
+            <div class="custom-timer">
+                <label>自定义(分钟)</label>
+                <input type="number" id="custom-min" min="1" max="600" placeholder="输入分钟">
+                <button id="set-custom-timer" class="btn-primary">设置</button>
+            </div>
+            <button id="close-timer-modal" class="btn-secondary">关闭</button>
+        </div>
+    </div>
+
+    <!-- 更多菜单 -->
+    <div id="more-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3>更多操作</h3>
+            <button id="jump-to-begin" class="menu-btn">从头开始</button>
+            <button id="jump-to-last" class="menu-btn">跳转到上次位置</button>
+            <button id="delete-book" class="menu-btn danger">从书架删除</button>
+            <button id="close-more-modal" class="btn-secondary">关闭</button>
+        </div>
+    </div>
+
+    <!-- Toast 提示 -->
+    <div id="toast" class="toast hidden"></div>
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
